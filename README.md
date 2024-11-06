@@ -2,10 +2,8 @@
 
 ## Overview
 
-This is an Elixir-based shopping cart system that implements basic product management and discount strategies.
+This is a shopping cart system that implements basic product management and discount strategies.
 The system consists of three main components:
-
-### Core Modules
 
 ```mermaid
   flowchart LR
