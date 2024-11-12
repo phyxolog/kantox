@@ -4,18 +4,27 @@ defmodule Kantox.CheckoutTest do
 
   alias Kantox.Checkout
   alias Kantox.Checkout.CartItem
-  alias Kantox.Products.Discount
   alias Kantox.Products.Product
 
   @discount_rules %{
-    "GR1" => Discount.GreenTeaRule,
-    "SR1" => Discount.StrawberryRule,
-    "CF1" => Discount.CoffeeRule
+    "GR1" => Kantox.Products.Discount.BuyOneGetOne,
+    "CF1" => %Kantox.Products.Discount.QuantityBased{
+      compare_in: [:eq, :gt],
+      count: Decimal.new(3),
+      mode: :discount,
+      value: Decimal.from_float(2 / 3)
+    },
+    "SR1" => %Kantox.Products.Discount.QuantityBased{
+      compare_in: [:eq, :gt],
+      count: Decimal.new(3),
+      mode: :fixed_price,
+      value: Decimal.from_float(4.50)
+    }
   }
 
-  @product1 Product.new!("GR1", "Green tea", Decimal.from_float(3.11))
-  @product2 Product.new!("SR1", "Strawberries", Decimal.from_float(5.00))
-  @product3 Product.new!("CF1", "Strawberries", Decimal.from_float(11.23))
+  @product1 %Product{code: "GR1", name: "Green tea", price: Decimal.from_float(3.11)}
+  @product2 %Product{code: "SR1", name: "Strawberries", price: Decimal.from_float(5.00)}
+  @product3 %Product{code: "CF1", name: "Strawberries", price: Decimal.from_float(11.23)}
 
   describe "add_product/2" do
     test "returns an updated Checkout struct with a new item in the cart" do

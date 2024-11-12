@@ -5,5 +5,5 @@ defmodule Kantox.Products.Discount do
 
   @type behaviour_module() :: module()
 
-  @callback apply(qty :: Decimal.t(), price :: Decimal.t()) :: Decimal.t()
+  @callback apply(qty :: Decimal.t(), price :: Decimal.t(), params :: term()) :: Decimal.t()
 end

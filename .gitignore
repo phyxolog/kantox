@@ -24,3 +24,6 @@ kantox-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Ignore test database
+priv/kantox_test*.db*
