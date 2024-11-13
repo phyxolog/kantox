@@ -13,7 +13,7 @@ To play with endpoints check Swagger UI: [`localhost:4000/swaggerui`](http://loc
 
 ## Overview
 
-This is a fully functional Phoenix application implementing a REST API for a product list and shopping cart. It utilizes several libraries: Ecto for database operations (SQLite), Decimal for handling prices, OpenApiSpex for comprehensive documentation and Swagger UI, and Scrivener.Ecto for pagination.
+This is a fully functional Phoenix application implementing a REST API for a product list and shopping cart. It utilizes several libraries: `Ecto` for database operations (`SQLite`), `Decimal` for handling prices, `OpenApiSpex` for comprehensive documentation and `Swagger UI`, and `Scrivener.Ecto` for pagination, `Telemetry` for metrics.
 
 It includes CI workflows for `Compiling (warnings-as-errors)`, `Check format`, `Dialyzer`, `Credo`, `Tests`, `Hex Audit`.
 
