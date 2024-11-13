@@ -1,6 +1,6 @@
 defmodule Kantox.Products.Product do
   @moduledoc """
-  A module representing a product with a code, name, and price. All fields are required (enforced).
+  A module representing a product with a code, name, and price.
   """
 
   use Kantox.Schema
@@ -18,9 +18,9 @@ defmodule Kantox.Products.Product do
   @permitted ~w(code name price)a
 
   schema "products" do
-    field(:code, :string)
-    field(:name, :string)
-    field(:price, :decimal)
+    field :code, :string
+    field :name, :string
+    field :price, :decimal
 
     timestamps()
   end

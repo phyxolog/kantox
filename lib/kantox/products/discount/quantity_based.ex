@@ -16,7 +16,7 @@ defmodule Kantox.Products.Discount.QuantityBased do
     }
 
     # set fixed price (4.50) for each product and quantities over or equal 3
-    %Kantox.Products.Discount.QuantityBased{
+    %QuantityBased{
       compare_in: [:gt, :lt],
       count: Decimal.new(3),
       mode: :fixed_price,
