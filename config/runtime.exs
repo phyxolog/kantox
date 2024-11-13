@@ -21,8 +21,6 @@ if System.get_env("PHX_SERVER") do
 end
 
 # Configures discount rules
-# Done here solely for the purpose of a test task
-# In a real-world scenario, this should be stored in the database
 config :kantox, Kantox.Products.Discount,
   rules: %{
     "GR1" => Kantox.Products.Discount.BuyOneGetOne,

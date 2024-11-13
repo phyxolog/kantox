@@ -58,6 +58,8 @@ defmodule Kantox.Checkout do
   @doc "Returns discount rules retrieves from the configuration"
   @spec discount_rules() :: discount_rules()
   def discount_rules do
+    # Done it here through application configuration for the purpose of a test task
+    # In a real-world scenario, this should be stored in the database
     Application.fetch_env!(:kantox, Discount)[:rules]
   end
 
