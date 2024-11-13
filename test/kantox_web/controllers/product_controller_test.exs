@@ -8,15 +8,25 @@ defmodule KantoxWeb.ProductControllerTest do
   @product2 %Product{code: "CF1", name: "Coffee", price: 5.12}
   @product3 %Product{code: "GH1", name: "GH", price: 1.12}
 
+  setup do
+    Repo.insert(Product.changeset(@product1))
+    Repo.insert(Product.changeset(@product2))
+    Repo.insert(Product.changeset(@product3))
+
+    :ok
+  end
+
   describe "index" do
     test "returns empty list of products (response code: 200)", %{conn: conn} do
+      Repo.delete_all(Product)
+
       conn = get(conn, ~p"/api/v1/products")
 
       assert %{
-               "data" => %{
+               "data" => [],
+               "metadata" => %{
                  "page_number" => 1,
                  "page_size" => 100,
-                 "products" => [],
                  "total_entries" => 0,
                  "total_pages" => 1
                }
@@ -24,36 +34,32 @@ defmodule KantoxWeb.ProductControllerTest do
     end
 
     test "returns list of products (response code: 200)", %{conn: conn} do
-      Repo.insert(Product.changeset(@product1))
-      Repo.insert(Product.changeset(@product2))
-      Repo.insert(Product.changeset(@product3))
-
       conn = get(conn, ~p"/api/v1/products")
 
       assert %{
-               "data" => %{
+               "data" => [
+                 %{
+                   "code" => "GR1",
+                   "id" => 1,
+                   "name" => "Green tea",
+                   "price" => "3.11"
+                 },
+                 %{
+                   "code" => "CF1",
+                   "id" => 2,
+                   "name" => "Coffee",
+                   "price" => "5.12"
+                 },
+                 %{
+                   "code" => "GH1",
+                   "id" => 3,
+                   "name" => "GH",
+                   "price" => "1.12"
+                 }
+               ],
+               "metadata" => %{
                  "page_number" => 1,
                  "page_size" => 100,
-                 "products" => [
-                   %{
-                     "code" => "GR1",
-                     "id" => 1,
-                     "name" => "Green tea",
-                     "price" => "3.11"
-                   },
-                   %{
-                     "code" => "CF1",
-                     "id" => 2,
-                     "name" => "Coffee",
-                     "price" => "5.12"
-                   },
-                   %{
-                     "code" => "GH1",
-                     "id" => 3,
-                     "name" => "GH",
-                     "price" => "1.12"
-                   }
-                 ],
                  "total_entries" => 3,
                  "total_pages" => 1
                }
@@ -61,24 +67,20 @@ defmodule KantoxWeb.ProductControllerTest do
     end
 
     test "returns list of products with pagination (response code: 200)", %{conn: conn} do
-      Repo.insert(Product.changeset(@product1))
-      Repo.insert(Product.changeset(@product2))
-      Repo.insert(Product.changeset(@product3))
-
       conn = get(conn, ~p"/api/v1/products", %{page_size: 1})
 
       assert %{
-               "data" => %{
+               "data" => [
+                 %{
+                   "code" => "GR1",
+                   "id" => 1,
+                   "name" => "Green tea",
+                   "price" => "3.11"
+                 }
+               ],
+               "metadata" => %{
                  "page_number" => 1,
                  "page_size" => 1,
-                 "products" => [
-                   %{
-                     "code" => "GR1",
-                     "id" => 1,
-                     "name" => "Green tea",
-                     "price" => "3.11"
-                   }
-                 ],
                  "total_entries" => 3,
                  "total_pages" => 3
                }
@@ -87,17 +89,17 @@ defmodule KantoxWeb.ProductControllerTest do
       conn = get(conn, ~p"/api/v1/products", %{page_size: 1, page: 2})
 
       assert %{
-               "data" => %{
+               "data" => [
+                 %{
+                   "code" => "CF1",
+                   "id" => 2,
+                   "name" => "Coffee",
+                   "price" => "5.12"
+                 }
+               ],
+               "metadata" => %{
                  "page_number" => 2,
                  "page_size" => 1,
-                 "products" => [
-                   %{
-                     "code" => "CF1",
-                     "id" => 2,
-                     "name" => "Coffee",
-                     "price" => "5.12"
-                   }
-                 ],
                  "total_entries" => 3,
                  "total_pages" => 3
                }

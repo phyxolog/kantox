@@ -5,8 +5,8 @@ defmodule KantoxWeb.ProductJSON do
 
   def index(%{products: %Scrivener.Page{} = page}) do
     %{
-      data: %{
-        products: Enum.map(page.entries, &render_product/1),
+      data: Enum.map(page.entries, &render_product/1),
+      metadata: %{
         page_number: page.page_number,
         page_size: page.page_size,
         total_pages: page.total_pages,
