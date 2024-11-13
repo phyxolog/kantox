@@ -1,4 +1,4 @@
-name: Dialyzer
+name: CI
 
 env:
   ELIXIR_VERSION: "1.17.0-otp-27"
