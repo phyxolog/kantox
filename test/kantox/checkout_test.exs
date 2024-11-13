@@ -37,6 +37,20 @@ defmodule Kantox.CheckoutTest do
     end
   end
 
+  describe "add_products/2" do
+    test "returns an updated Checkout struct with a new items in the cart" do
+      checkout = Checkout.new()
+
+      assert map_size(checkout.cart) == 0
+
+      checkout = Checkout.add_products(checkout, [@product1, @product2])
+
+      assert %Checkout{
+               cart: %{"GR1" => %CartItem{qty: 1, price: _}, "SR1" => %CartItem{qty: 1, price: _}}
+             } = checkout
+    end
+  end
+
   describe "final_price/1" do
     test "returns zero for empty checkout" do
       checkout = Checkout.new()
