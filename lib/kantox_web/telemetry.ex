@@ -21,6 +21,11 @@ defmodule KantoxWeb.Telemetry do
 
   def metrics do
     [
+      # Individual Metrics
+      counter("kantox.checkout.products.count",
+        description: "Number of products in shopping carts"
+      ),
+
       # Phoenix Metrics
       summary("phoenix.endpoint.start.system_time",
         unit: {:native, :millisecond}
