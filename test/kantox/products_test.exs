@@ -9,6 +9,13 @@ defmodule Kantox.ProductsTest do
   @product2 %Product{code: "CF1", name: "Coffee", price: 5.12}
   @product3 %Product{code: "GH1", name: "GH", price: 1.12}
 
+  test "prevents duplicate product insertion based on code" do
+    assert {:ok, _} = Repo.insert(Product.changeset(@product1))
+
+    assert {:error, %Ecto.Changeset{action: :insert, valid?: false}} =
+             Repo.insert(Product.changeset(@product1))
+  end
+
   describe "list_products/1" do
     test "returns all products with pagination" do
       Repo.insert(Product.changeset(@product1))
