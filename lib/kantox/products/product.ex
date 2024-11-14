@@ -32,6 +32,7 @@ defmodule Kantox.Products.Product do
     |> validate_required(@permitted)
     |> validate_change(:price, &validate_price/2)
     |> check_constraint(:price, name: :price_greater_than_zero)
+    |> unique_constraint(:code, name: :products_code_index)
   end
 
   defp validate_price(:price, price) do

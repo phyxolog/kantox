@@ -13,6 +13,6 @@ defmodule Kantox.Repo.Migrations.CreateProducts do
       timestamps()
     end
 
-    create index(:products, [:code])
+    create unique_index(:products, [:code])
   end
 end
