@@ -93,25 +93,25 @@ defmodule KantoxWeb.Api.Schemas do
         }
       },
       example: %{
-        "data" => %{
-          "products" => [
-            %{
-              "id" => 1,
-              "code" => "GR1",
-              "name" => "Green Tea",
-              "price" => "5.11",
-              "inserted_at" => "2017-09-12T12:34:55Z",
-              "updated_at" => "2017-09-13T10:11:12Z"
-            },
-            %{
-              "id" => 2,
-              "code" => "CF1",
-              "name" => "Coffee",
-              "price" => "12.50",
-              "inserted_at" => "2017-09-12T12:34:55Z",
-              "updated_at" => "2017-09-13T10:11:12Z"
-            }
-          ],
+        "data" => [
+          %{
+            "id" => 1,
+            "code" => "GR1",
+            "name" => "Green Tea",
+            "price" => "5.11",
+            "inserted_at" => "2017-09-12T12:34:55Z",
+            "updated_at" => "2017-09-13T10:11:12Z"
+          },
+          %{
+            "id" => 2,
+            "code" => "CF1",
+            "name" => "Coffee",
+            "price" => "12.50",
+            "inserted_at" => "2017-09-12T12:34:55Z",
+            "updated_at" => "2017-09-13T10:11:12Z"
+          }
+        ],
+        "metadata" => %{
           "page_size" => 100,
           "page_number" => 1,
           "total_entries" => 3,
